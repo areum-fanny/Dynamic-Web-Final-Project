@@ -5,8 +5,8 @@ const db = firebase.firestore();
 const users = db.collection("users");
 router.get("/",(req,res) => res.send("No Username provided"));
 router.get("/:username/:email/:firstname/:lastname",(req,res) => {
-    const queryUsername = req.params.username;
-    const queryemail = req.params.email;
+    const queryUsername = req.params.username.toLowerCase();
+    const queryemail = req.params.email.toLowerCase();;
     const queryfirstname = req.params.firstname;
     const querylastname = req.params.lastname;
     users

@@ -3,6 +3,7 @@ const router = express.Router();
 const firebase = require("firebase");
 const db = firebase.firestore();
 const users = db.collection("users");
+console.log("getemail");
 router.get("/",(req,res) => res.send("No Username provided"));
 router.get("/:username",(req,res) => {
     const queryUsername = req.params.username.toLowerCase();
@@ -10,27 +11,12 @@ router.get("/:username",(req,res) => {
     .doc(queryUsername)
     .get()
     .then(function(doc){
-        let resultJSON = [];
         if(doc.exists){
-            resultJSON = [{
-            username: queryUsername,
-            usernameFound: true,
-            }]
+            res.send(doc.data());
         }
-        else {
-            resultJSON = [{
-                username: queryUsername,
-                usernameFound: false,
-            }]
-        }
-        res.send(resultJSON);
     })
     .catch(function(error){
-        const resultJSON = [{
-            username: queryUsername,
-            usernameFound: false,
-        }]
-        res.send(resultJSON);
+        res.send(error);
     });
 });
 

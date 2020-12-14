@@ -25,7 +25,11 @@ app.use(function (req, res, next) {
 const indexRoute = require("./routes/index");
 const findUsernameRoute = require("./routes/findusername");
 const createUserRoute = require("./routes/createuser");
+const getUseremailRoute = require("./routes/getemail");
+const getUserinfoRoute = require("./routes/getuserinfo");
 app.use("/", indexRoute);
 app.use("/findusername",findUsernameRoute);
 app.use("/createuser",createUserRoute);
+app.use("/getemail",getUseremailRoute);
+app.use("/getuserinfo",getUserinfoRoute);
 app.listen(port, () => console.log(`Backend is running at port:${port}`));
