@@ -4,18 +4,24 @@ const firebase = require("firebase");
 const db = firebase.firestore();
 const users = db.collection("users");
 router.get("/",(req,res) => res.send("No Username provided"));
-router.get("/:username/:email/:firstname/:lastname",(req,res) => {
+router.get("/:username/:email",(req,res) => {
     const queryUsername = req.params.username.toLowerCase();
     const queryemail = req.params.email.toLowerCase();;
-    const queryfirstname = req.params.firstname;
-    const querylastname = req.params.lastname;
+
     users
     .doc(queryUsername)
     .set({
         username: queryUsername,
         email: queryemail,
-        firstname: queryfirstname,
-        lastname: querylastname
+        followers: [],
+        following: [],
+        tagline: "",
+        aboutme: "",
+        profilepicture: {
+            name: "",
+            token: ""
+        },
+        level: ""
     })
     .then(function(){
         const resultJSON = [{

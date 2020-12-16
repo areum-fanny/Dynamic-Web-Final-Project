@@ -29,12 +29,19 @@ const getUseremailRoute = require("./routes/getemail");
 const getUserinfoRoute = require("./routes/getuserinfo");
 const createPostRoute = require("./routes/createpost");
 const getPostRoute = require("./routes/getpost");
+const getAdditionalDetailsRoute = require("./routes/additionaldetails");
+const getPostsbyUser = require("./routes/getpostsbyuser");
+const followUserRoute = require("./routes/followuser");
+const getHomePostRoute = require("./routes/gethomeposts");
 
+app.use("/gethomeposts",getHomePostRoute);
 app.use("/findusername",findUsernameRoute);
 app.use("/createuser",createUserRoute);
 app.use("/getemail",getUseremailRoute);
 app.use("/getuserinfo",getUserinfoRoute);
 app.use("/createpost",createPostRoute);
 app.use("/getpost",getPostRoute);
-
+app.use("/additionaldetails",getAdditionalDetailsRoute);
+app.use("/getpostsbyuser",getPostsbyUser);
+app.use("/followuser",followUserRoute);
 app.listen(port, () => console.log(`Backend is running at port:${port}`));

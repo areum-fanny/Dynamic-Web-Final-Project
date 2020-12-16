@@ -3,7 +3,6 @@ const router = express.Router();
 const firebase = require("firebase");
 const db = firebase.firestore();
 const users = db.collection("users");
-console.log("getemail");
 router.get("/",(req,res) => res.send("No Username provided"));
 router.get("/:username",(req,res) => {
     const queryUsername = req.params.username.toLowerCase();

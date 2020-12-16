@@ -5,24 +5,10 @@ const firebase = require("firebase");
 const db = firebase.firestore();
 const posts = db.collection("posts");
 router.get("/",(req,res) => res.send(""));
-router.get("/:posttitle",(req,res) => {
-    const queryTitle = req.params.posttitle;
-    posts
-    .doc(queryTitle)
-    .get()
-    .then(function (doc) {
-      if (doc.exists) {
-        res.send(doc.data());
-    }})
-    .catch(function(error){
-        res.send(error);
-    });
-});
-router.get("/postsbyuser/:username",(req,res) => {
+router.get("/:username",(req,res) => {
     const queryusername = req.params.username;
     const resultarray = [];
     posts
-    .doc()
     .where('contributor','==',queryusername)
     .get()
     .then(function (querySnapshot) {
@@ -35,4 +21,5 @@ router.get("/postsbyuser/:username",(req,res) => {
         res.send(error);
     });
 });
+
 module.exports = router;
