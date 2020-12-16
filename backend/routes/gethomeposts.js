@@ -43,8 +43,8 @@ router.get("/:username", (req, res) => {
                         querySnapshot.forEach(function (doc) {
                             Allposts.push(doc.data());
                         });
+                        res.send(Allposts);
                     });
-            res.send(Allposts);
         });
     })
     .catch(function (error) {

@@ -14,7 +14,7 @@ const firebase = require("firebase");
 firebase.initializeApp(firebaseConfig);
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "https://jovial-liskov-56c07e.netlify.app"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -33,7 +33,8 @@ const getAdditionalDetailsRoute = require("./routes/additionaldetails");
 const getPostsbyUser = require("./routes/getpostsbyuser");
 const followUserRoute = require("./routes/followuser");
 const getHomePostRoute = require("./routes/gethomeposts");
-
+const indexRoute = require("./routes/Index");
+app.use("/",indexRoute);
 app.use("/gethomeposts",getHomePostRoute);
 app.use("/findusername",findUsernameRoute);
 app.use("/createuser",createUserRoute);
